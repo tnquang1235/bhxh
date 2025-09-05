@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work page</title>
+    <!-- Thư viện Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phông chữ Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Nền màu xám nhạt */
+        }
+        .category-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Bo tròn góc */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease-in-out;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        .link-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #e0f2fe; /* Nền màu xanh nhạt */
+            color: #0369a1; /* Chữ màu xanh đậm hơn */
+            font-weight: 600;
+            border-radius: 0.5rem; /* Bo tròn góc nhỏ hơn cho nút */
+            text-align: center;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+        .link-button:hover {
+            background-color: #bfdbfe; /* Xanh nhạt hơn khi di chuột */
+            color: #075985;
+            transform: translateX(5px); /* Hiệu ứng di chuyển nhỏ */
+        }
+        .svg {
+            margin-right: 0.75rem;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-10">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                BẢO HIỂM XÃ HỘI
+            </h1>
+            <p class="text-lg text-gray-600">
+                Truy cập nhanh các trang web tra cứu BHXH.
+            </p>
+        </header>
+
+        <!-- Thay đổi bố cục số cột lưới trên màn hình tại lg:grid-cols- -->
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></main>
+            <section class="category-card p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                    Tra cứu
+                </h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://doanhnghiep.hochiminhcity.gov.vn/Home/Index" target="_blank" class="link-button">
+                            Thông tin doanh nghiệp
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="BHXH_Co_so.html" target="_blank" class="link-button">
+                            DS BHXH cơ sở
+                        </a>
+                    </li>
+                                        <li>
+                        <a href="Tuoi_huu.html" target="_blank" class="link-button">
+                            Tuổi nghỉ hưu
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-10 text-gray-500 text-sm">
+            <p>&copy; 2024 Trang Chủ Cá Nhân. Thiết kế bởi Gemini.</p>
+        </footer>
+    </div>
+</body>
+</html>

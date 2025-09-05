@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Tuổi Nghỉ Hưu</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .container-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .filter-container input, .filter-container select {
+            border-radius: 0.75rem;
+            border: 1px solid #d1d5db;
+            padding: 0.75rem 1rem;
+            outline: none;
+            transition: border-color 0.2s ease-in-out;
+        }
+        .filter-container input:focus, .filter-container select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+        }
+        th, td {
+            padding: 1rem;
+        }
+        
+        /* Cập nhật màu tiêu đề bảng */
+        th {
+            background-color: #3b82f6; /* Blue 500 */
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        
+        /* Màu sắc tùy chỉnh theo yêu cầu của người dùng */
+        tbody tr.color-group-1.odd { background-color: #dcfce7; /* Light Green */ }
+        tbody tr.color-group-1.even { background-color: white; /* White */ }
+        tbody tr.color-group-2.odd { background-color: #dbeafe; /* Light Blue */ }
+        tbody tr.color-group-2.even { background-color: white; /* White */ }
+        
+        /* Hiệu ứng rê chuột màu vàng nổi bật */
+        tbody tr:hover {
+            background-color: #fef08a !important; /* Prominent Yellow */
+            transition: background-color 0.2s;
+        }
+
+        th:first-child { border-top-left-radius: 1rem; }
+        th:last-child { border-top-right-radius: 1rem; }
+        tr:last-child td:first-child { border-bottom-left-radius: 1rem; }
+        tr:last-child td:last-child { border-bottom-right-radius: 1rem; }
+
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .two-column-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .static-table-container {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+        }
+        .static-table-container table {
+            border-spacing: 0;
+        }
+        .static-table-container th, .static-table-container td {
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<div class="container-wrapper">
+    <div class="card">
+        <h1 class="text-4xl font-bold text-center mb-2 text-gray-900">
+            Tuổi nghỉ hưu
+        </h1>
+        <p class="text-center italic text-gray-500 mb-8">
+            Căn cứ theo Điều 169 Bộ luật Lao động 2019
+        </p>
+
+        <div class="two-column-layout mb-12">
+            <!-- Static Table for Male -->
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Lao động nam</h3>
+                <div class="static-table-container">
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">Năm nghỉ hưu</th>
+                                <th class="px-4 py-2">Tuổi nghỉ hưu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2025</td>
+                                <td class="px-4 py-2">61 tuổi 3 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2026</td>
+                                <td class="px-4 py-2">61 tuổi 6 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2027</td>
+                                <td class="px-4 py-2">61 tuổi 9 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">Từ năm 2028 trở đi</td>
+                                <td class="px-4 py-2">62 tuổi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Static Table for Female -->
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Lao động nữ</h3>
+                <div class="static-table-container">
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">Năm nghỉ hưu</th>
+                                <th class="px-4 py-2">Tuổi nghỉ hưu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2025</td>
+                                <td class="px-4 py-2">56 tuổi 8 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2026</td>
+                                <td class="px-4 py-2">57 tuổi</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2027</td>
+                                <td class="px-4 py-2">57 tuổi 4 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2028</td>
+                                <td class="px-4 py-2">57 tuổi 8 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2029</td>
+                                <td class="px-4 py-2">58 tuổi</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2030</td>
+                                <td class="px-4 py-2">58 tuổi 4 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2031</td>
+                                <td class="px-4 py-2">58 tuổi 8 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2032</td>
+                                <td class="px-4 py-2">59 tuổi</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2033</td>
+                                <td class="px-4 py-2">59 tuổi 4 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">2034</td>
+                                <td class="px-4 py-2">59 tuổi 8 tháng</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2">Từ năm 2035 trở đi</td>
+                                <td class="px-4 py-2">60 tuổi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-3xl font-bold text-gray-900 mt-12 mb-2 text-center">
+            Tuổi nghỉ hưu cụ thể theo tháng, năm sinh
+        </h2>
+
+        <div class="two-column-layout">
+            <div class="male-section relative">
+                <h3 class="text-2xl font-semibold text-gray-900 text-center sticky-header-h3">Lao Động Nam</h3>
+                <div class="filter-container grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label for="male-birth-year-filter" class="block text-sm font-medium text-gray-700 mb-1">Năm Sinh</label>
+                        <input type="number" id="male-birth-year-filter" placeholder="VD: 1961" class="w-full" min="1961" max="2025">
+                    </div>
+                    <div>
+                        <label for="male-birth-month-filter" class="block text-sm font-medium text-gray-700 mb-1">Tháng Sinh</label>
+                        <input type="number" id="male-birth-month-filter" placeholder="VD: 8" class="w-full" min="1" max="12">
+                    </div>
+                    <div>
+                        <label for="male-benefit-year-filter" class="block text-sm font-medium text-gray-700 mb-1">Năm Hưởng</label>
+                        <input type="number" id="male-benefit-year-filter" placeholder="VD: 2025" class="w-full" min="2021" max="2030">
+                    </div>
+                </div>
+                <div class="overflow-x-auto rounded-xl shadow-inner">
+                    <table class="min-w-full divide-y divide-gray-200 male-table">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tl-xl">Tháng Sinh</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Năm Sinh</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tuổi Nghỉ Hưu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tháng Hưởng</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tr-xl">Năm Hưởng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="male-table-body" class="bg-white divide-y divide-gray-200">
+                            <!-- Data for Male will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="female-section relative">
+                <h3 class="text-2xl font-semibold text-gray-900 text-center sticky-header-h3">Lao Động Nữ</h3>
+                <div class="filter-container grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label for="female-birth-year-filter" class="block text-sm font-medium text-gray-700 mb-1">Năm Sinh</label>
+                        <input type="number" id="female-birth-year-filter" placeholder="VD: 1966" class="w-full" min="1961" max="2025">
+                    </div>
+                    <div>
+                        <label for="female-birth-month-filter" class="block text-sm font-medium text-gray-700 mb-1">Tháng Sinh</label>
+                        <input type="number" id="female-birth-month-filter" placeholder="VD: 8" class="w-full" min="1" max="12">
+                    </div>
+                    <div>
+                        <label for="female-benefit-year-filter" class="block text-sm font-medium text-gray-700 mb-1">Năm Hưởng</label>
+                        <input type="number" id="female-benefit-year-filter" placeholder="VD: 2025" class="w-full" min="2021" max="2030">
+                    </div>
+                </div>
+                <div class="overflow-x-auto rounded-xl shadow-inner">
+                    <table class="min-w-full divide-y divide-gray-200 female-table">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tl-xl">Tháng Sinh</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Năm Sinh</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tuổi Nghỉ Hưu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tháng Hưởng</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tr-xl">Năm Hưởng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="female-table-body" class="bg-white divide-y divide-gray-200">
+                            <!-- Data for Female will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Dữ liệu mẫu dựa trên hình ảnh được cung cấp
+    const data = [
+        // Dữ liệu Lao động nam
+        { gender: 'Nam', birthMonth: 1, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 5, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 2, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 6, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 3, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 7, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 4, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 8, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 5, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 9, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 6, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 10, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 7, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 11, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 8, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 12, benefitYear: 2021 },
+        { gender: 'Nam', birthMonth: 9, birthYear: 1961, retirementAge: '60 tuổi 3 tháng', benefitMonth: 1, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 10, birthYear: 1961, retirementAge: '60 tuổi 6 tháng', benefitMonth: 5, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 11, birthYear: 1961, retirementAge: '60 tuổi 6 tháng', benefitMonth: 6, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 12, birthYear: 1961, retirementAge: '60 tuổi 6 tháng', benefitMonth: 7, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 1, birthYear: 1962, retirementAge: '60 tuổi 6 tháng', benefitMonth: 8, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 2, birthYear: 1962, retirementAge: '60 tuổi 6 tháng', benefitMonth: 9, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 3, birthYear: 1962, retirementAge: '60 tuổi 6 tháng', benefitMonth: 10, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 4, birthYear: 1962, retirementAge: '60 tuổi 6 tháng', benefitMonth: 11, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 5, birthYear: 1962, retirementAge: '60 tuổi 6 tháng', benefitMonth: 12, benefitYear: 2022 },
+        { gender: 'Nam', birthMonth: 6, birthYear: 1962, retirementAge: '60 tuổi 6 tháng', benefitMonth: 1, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 7, birthYear: 1962, retirementAge: '60 tuổi 9 tháng', benefitMonth: 5, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 8, birthYear: 1962, retirementAge: '60 tuổi 9 tháng', benefitMonth: 6, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 9, birthYear: 1962, retirementAge: '60 tuổi 9 tháng', benefitMonth: 7, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 10, birthYear: 1962, retirementAge: '60 tuổi 9 tháng', benefitMonth: 8, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 11, birthYear: 1962, retirementAge: '60 tuổi 9 tháng', benefitMonth: 9, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 12, birthYear: 1962, retirementAge: '60 tuổi 9 tháng', benefitMonth: 10, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 1, birthYear: 1963, retirementAge: '60 tuổi 9 tháng', benefitMonth: 11, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 2, birthYear: 1963, retirementAge: '60 tuổi 9 tháng', benefitMonth: 12, benefitYear: 2023 },
+        { gender: 'Nam', birthMonth: 3, birthYear: 1963, retirementAge: '60 tuổi 9 tháng', benefitMonth: 1, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 4, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 5, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 5, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 6, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 6, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 7, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 7, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 8, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 8, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 9, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 9, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 10, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 10, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 11, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 11, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 12, benefitYear: 2024 },
+        { gender: 'Nam', birthMonth: 12, birthYear: 1963, retirementAge: '61 tuổi', benefitMonth: 1, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 1, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 5, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 2, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 6, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 3, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 7, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 4, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 8, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 5, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 9, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 6, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 10, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 7, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 11, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 8, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 12, benefitYear: 2025 },
+        { gender: 'Nam', birthMonth: 9, birthYear: 1964, retirementAge: '61 tuổi 3 tháng', benefitMonth: 1, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 10, birthYear: 1964, retirementAge: '61 tuổi 6 tháng', benefitMonth: 5, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 11, birthYear: 1964, retirementAge: '61 tuổi 6 tháng', benefitMonth: 6, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 12, birthYear: 1964, retirementAge: '61 tuổi 6 tháng', benefitMonth: 7, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 1, birthYear: 1965, retirementAge: '61 tuổi 6 tháng', benefitMonth: 8, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 2, birthYear: 1965, retirementAge: '61 tuổi 6 tháng', benefitMonth: 9, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 3, birthYear: 1965, retirementAge: '61 tuổi 6 tháng', benefitMonth: 10, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 4, birthYear: 1965, retirementAge: '61 tuổi 6 tháng', benefitMonth: 11, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 5, birthYear: 1965, retirementAge: '61 tuổi 6 tháng', benefitMonth: 12, benefitYear: 2026 },
+        { gender: 'Nam', birthMonth: 6, birthYear: 1965, retirementAge: '61 tuổi 6 tháng', benefitMonth: 1, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 7, birthYear: 1965, retirementAge: '61 tuổi 9 tháng', benefitMonth: 5, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 8, birthYear: 1965, retirementAge: '61 tuổi 9 tháng', benefitMonth: 6, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 9, birthYear: 1965, retirementAge: '61 tuổi 9 tháng', benefitMonth: 7, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 10, birthYear: 1965, retirementAge: '61 tuổi 9 tháng', benefitMonth: 8, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 11, birthYear: 1965, retirementAge: '61 tuổi 9 tháng', benefitMonth: 9, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 12, birthYear: 1965, retirementAge: '61 tuổi 9 tháng', benefitMonth: 10, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 1, birthYear: 1966, retirementAge: '61 tuổi 9 tháng', benefitMonth: 11, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 2, birthYear: 1966, retirementAge: '61 tuổi 9 tháng', benefitMonth: 12, benefitYear: 2027 },
+        { gender: 'Nam', birthMonth: 3, birthYear: 1966, retirementAge: '61 tuổi 9 tháng', benefitMonth: 1, benefitYear: 2028 },
+        { gender: 'Nam', birthMonth: 4, birthYear: 1966, retirementAge: '62 tuổi', benefitMonth: 5, benefitYear: 2028},
+
+        
+        // Dữ liệu Lao động nữ
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 6, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 7, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 8, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 9, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 10, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 11, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 12, benefitYear: 2021 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1966, retirementAge: '55 tuổi 4 tháng', benefitMonth: 1, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1966, retirementAge: '55 tuổi 8 tháng', benefitMonth: 6, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1966, retirementAge: '55 tuổi 8 tháng', benefitMonth: 7, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1966, retirementAge: '55 tuổi 8 tháng', benefitMonth: 8, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1966, retirementAge: '55 tuổi 8 tháng', benefitMonth: 9, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1967, retirementAge: '55 tuổi 8 tháng', benefitMonth: 10, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1967, retirementAge: '55 tuổi 8 tháng', benefitMonth: 11, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1967, retirementAge: '55 tuổi 8 tháng', benefitMonth: 12, benefitYear: 2022 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1967, retirementAge: '55 tuổi 8 tháng', benefitMonth: 1, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 6, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 7, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 8, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 9, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 10, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 11, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 12, benefitYear: 2023 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1967, retirementAge: '56 tuổi', benefitMonth: 1, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 6, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 7, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 8, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 9, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 10, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 11, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 12, benefitYear: 2024 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1968, retirementAge: '56 tuổi 4 tháng', benefitMonth: 1, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1968, retirementAge: '56 tuổi 8 tháng', benefitMonth: 6, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1968, retirementAge: '56 tuổi 8 tháng', benefitMonth: 7, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1968, retirementAge: '56 tuổi 8 tháng', benefitMonth: 8, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1968, retirementAge: '56 tuổi 8 tháng', benefitMonth: 9, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1969, retirementAge: '56 tuổi 8 tháng', benefitMonth: 10, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1969, retirementAge: '56 tuổi 8 tháng', benefitMonth: 11, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1969, retirementAge: '56 tuổi 8 tháng', benefitMonth: 12, benefitYear: 2025 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1969, retirementAge: '56 tuổi 8 tháng', benefitMonth: 1, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 6, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 7, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 8, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 9, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 10, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 11, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 12, benefitYear: 2026 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1969, retirementAge: '57 tuổi', benefitMonth: 1, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 6, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 7, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 8, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 9, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 10, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 11, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 12, benefitYear: 2027 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1970, retirementAge: '57 tuổi 4 tháng', benefitMonth: 1, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1970, retirementAge: '57 tuổi 8 tháng', benefitMonth: 6, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1970, retirementAge: '57 tuổi 8 tháng', benefitMonth: 7, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1970, retirementAge: '57 tuổi 8 tháng', benefitMonth: 8, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1970, retirementAge: '57 tuổi 8 tháng', benefitMonth: 9, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1971, retirementAge: '57 tuổi 8 tháng', benefitMonth: 10, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1971, retirementAge: '57 tuổi 8 tháng', benefitMonth: 11, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1971, retirementAge: '57 tuổi 8 tháng', benefitMonth: 12, benefitYear: 2028 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1971, retirementAge: '57 tuổi 8 tháng', benefitMonth: 1, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 6, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 7, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 8, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 9, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 10, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 11, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 12, benefitYear: 2029 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1971, retirementAge: '58 tuổi', benefitMonth: 1, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 6, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 7, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 8, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 9, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 10, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 11, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 12, benefitYear: 2030 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1972, retirementAge: '58 tuổi 4 tháng', benefitMonth: 1, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1972, retirementAge: '58 tuổi 8 tháng', benefitMonth: 6, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1972, retirementAge: '58 tuổi 8 tháng', benefitMonth: 7, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1972, retirementAge: '58 tuổi 8 tháng', benefitMonth: 8, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1972, retirementAge: '58 tuổi 8 tháng', benefitMonth: 9, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1973, retirementAge: '58 tuổi 8 tháng', benefitMonth: 10, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1973, retirementAge: '58 tuổi 8 tháng', benefitMonth: 11, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1973, retirementAge: '58 tuổi 8 tháng', benefitMonth: 12, benefitYear: 2031 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1973, retirementAge: '58 tuổi 8 tháng', benefitMonth: 1, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 6, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 7, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 8, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 9, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 10, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 11, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 12, benefitYear: 2032 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1973, retirementAge: '59 tuổi', benefitMonth: 1, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 6, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 7, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 8, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 9, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 10, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 6, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 11, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 7, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 12, benefitYear: 2033 },
+        { gender: 'Nữ', birthMonth: 8, birthYear: 1974, retirementAge: '59 tuổi 4 tháng', benefitMonth: 1, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 9, birthYear: 1974, retirementAge: '59 tuổi 8 tháng', benefitMonth: 6, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 10, birthYear: 1974, retirementAge: '59 tuổi 8 tháng', benefitMonth: 7, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 11, birthYear: 1974, retirementAge: '59 tuổi 8 tháng', benefitMonth: 8, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 12, birthYear: 1974, retirementAge: '59 tuổi 8 tháng', benefitMonth: 9, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 1, birthYear: 1975, retirementAge: '59 tuổi 8 tháng', benefitMonth: 10, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 2, birthYear: 1975, retirementAge: '59 tuổi 8 tháng', benefitMonth: 11, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 3, birthYear: 1975, retirementAge: '59 tuổi 8 tháng', benefitMonth: 12, benefitYear: 2034 },
+        { gender: 'Nữ', birthMonth: 4, birthYear: 1975, retirementAge: '59 tuổi 8 tháng', benefitMonth: 1, benefitYear: 2035 },
+        { gender: 'Nữ', birthMonth: 5, birthYear: 1975, retirementAge: '60 tuổi', benefitMonth: 6, benefitYear: 2035 },
+    ];
+
+    // Lấy tất cả các input và phần tử bảng
+    const maleBirthYearFilter = document.getElementById('male-birth-year-filter');
+    const maleBirthMonthFilter = document.getElementById('male-birth-month-filter');
+    const maleBenefitYearFilter = document.getElementById('male-benefit-year-filter');
+    const maleTableBody = document.getElementById('male-table-body');
+
+    const femaleBirthYearFilter = document.getElementById('female-birth-year-filter');
+    const femaleBirthMonthFilter = document.getElementById('female-birth-month-filter');
+    const femaleBenefitYearFilter = document.getElementById('female-benefit-year-filter');
+    const femaleTableBody = document.getElementById('female-table-body');
+    
+    // Hàm để render một bảng cụ thể với màu xen kẽ
+    const renderTableSection = (dataToRender, tableBodyElement) => {
+        tableBodyElement.innerHTML = ''; // Xóa các hàng hiện có
+        if (dataToRender.length === 0) {
+            const noResultsRow = document.createElement('tr');
+            noResultsRow.innerHTML = `<td colspan="5" class="text-center py-8 text-gray-500">
+                                        Không tìm thấy kết quả nào.
+                                      </td>`;
+            tableBodyElement.appendChild(noResultsRow);
+            return;
+        }
+
+        let lastYear = null;
+        let colorGroup = 1; // Bắt đầu với nhóm màu đầu tiên
+        let rowCount = 0;
+
+        dataToRender.forEach(item => {
+            const row = document.createElement('tr');
+            
+            // Logic cho màu xen kẽ dựa trên benefitYear
+            if (item.benefitYear !== lastYear) {
+                lastYear = item.benefitYear;
+                colorGroup = (colorGroup === 1) ? 2 : 1; // Đổi nhóm màu
+                rowCount = 0; // Đặt lại số hàng cho nhóm năm mới
+            }
+            rowCount++;
+            const colorClass = `color-group-${colorGroup} ${(rowCount % 2 !== 0) ? 'odd' : 'even'}`;
+            row.className = colorClass;
+
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap">${item.birthMonth}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${item.birthYear}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${item.retirementAge}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${item.benefitMonth}</td>
+                <td class="px-6 py-4 whitespace-nowrap">${item.benefitYear}</td>
+            `;
+            tableBodyElement.appendChild(row);
+        });
+    };
+
+    // Hàm để lọc và render bảng nam
+    const filterAndRenderMaleTable = () => {
+        const selectedBirthYear = maleBirthYearFilter.value.trim().toLowerCase();
+        const selectedBirthMonth = maleBirthMonthFilter.value.trim().toLowerCase();
+        const selectedBenefitYear = maleBenefitYearFilter.value.trim().toLowerCase();
+
+        const filteredData = data.filter(item => {
+            const genderMatch = item.gender === 'Nam';
+            const birthYearMatch = !selectedBirthYear || item.birthYear.toString().includes(selectedBirthYear);
+            const birthMonthMatch = !selectedBirthMonth || item.birthMonth.toString().includes(selectedBirthMonth);
+            const benefitYearMatch = !selectedBenefitYear || item.benefitYear.toString().includes(selectedBenefitYear);
+            
+            return genderMatch && birthYearMatch && birthMonthMatch && benefitYearMatch;
+        });
+        
+        renderTableSection(filteredData, maleTableBody);
+    };
+    
+    // Hàm để lọc và render bảng nữ
+    const filterAndRenderFemaleTable = () => {
+        const selectedBirthYear = femaleBirthYearFilter.value.trim().toLowerCase();
+        const selectedBirthMonth = femaleBirthMonthFilter.value.trim().toLowerCase();
+        const selectedBenefitYear = femaleBenefitYearFilter.value.trim().toLowerCase();
+
+        const filteredData = data.filter(item => {
+            const genderMatch = item.gender === 'Nữ';
+            const birthYearMatch = !selectedBirthYear || item.birthYear.toString().includes(selectedBirthYear);
+            const birthMonthMatch = !selectedBirthMonth || item.birthMonth.toString().includes(selectedBirthMonth);
+            const benefitYearMatch = !selectedBenefitYear || item.benefitYear.toString().includes(selectedBenefitYear);
+            
+            return genderMatch && birthYearMatch && birthMonthMatch && benefitYearMatch;
+        });
+        
+        renderTableSection(filteredData, femaleTableBody);
+    };
+    
+    // Thêm các trình nghe sự kiện cho tất cả các input lọc
+    maleBirthYearFilter.addEventListener('input', filterAndRenderMaleTable);
+    maleBirthMonthFilter.addEventListener('input', filterAndRenderMaleTable);
+    maleBenefitYearFilter.addEventListener('input', filterAndRenderMaleTable);
+
+    femaleBirthYearFilter.addEventListener('input', filterAndRenderFemaleTable);
+    femaleBirthMonthFilter.addEventListener('input', filterAndRenderFemaleTable);
+    femaleBenefitYearFilter.addEventListener('input', filterAndRenderFemaleTable);
+    
+    // Render ban đầu
+    document.addEventListener('DOMContentLoaded', () => {
+        filterAndRenderMaleTable();
+        filterAndRenderFemaleTable();
+    });
+</script>
+
+</body>
+</html>

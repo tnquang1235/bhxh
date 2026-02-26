@@ -10,7 +10,29 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        
+        /* Nút Home */
+        .home-button {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background-color: #1e293b;
+            color: white;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: #334155;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
         /* Định dạng bảng theo yêu cầu */
         #table_LuongTT, #table_HienHanh {
             width: 100%;
@@ -570,5 +592,6 @@
 </body>
 
 </html>
+
 
 

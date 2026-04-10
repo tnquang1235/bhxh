@@ -39,9 +39,19 @@
             position: sticky;
             top: 0;
             z-index: 20;
-            background: #f1f5f9;
-            color: #475569;
-            border-bottom: 1px solid #e2e8f0;
+            background: #0ea5e9;
+            color: #ffffff;
+            border-bottom: 2px solid #7dd3fc;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Zebra Striping */
+        #tableBody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        #tableBody tr:hover {
+            background-color: #f1f5f9;
         }
 
         /* Phân loại màu cho Tag */
@@ -118,7 +128,7 @@
 <body class="antialiased">
     <div class="min-h-screen flex flex-col">
         <!-- HEADER SECTION -->
-        <header class="bg-slate-900 text-white pt-16 pb-28 px-4 relative overflow-hidden">
+        <header class="bg-slate-900 text-white pt-10 pb-20 px-4 relative overflow-hidden">
             <div class="absolute inset-0 opacity-20">
                 <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
                 <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-600 rounded-full blur-3xl"></div>
@@ -135,10 +145,10 @@
         </header>
 
         <!-- MAIN CONTENT -->
-        <main class="flex-grow -mt-12 px-4 pb-12">
+        <main class="flex-grow -mt-14 px-4 pb-12">
             <div class="max-w-7xl mx-auto">
                 <!-- CONTROLS CARD -->
-                <div class="bg-white shadow-2xl rounded-2xl p-6 mb-6 relative z-30 border border-slate-200">
+                <div class="bg-white shadow-2xl rounded-2xl p-6 mb-3 relative z-30 border border-slate-200">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
                         <!-- Search Box -->
                         <div class="lg:col-span-5">
@@ -244,7 +254,8 @@
         <footer class="bg-white border-t border-slate-200 py-8 px-4 mt-auto">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="text-slate-400 text-xs">
-                    © 2026 Hệ thống tra cứu NNDH. Toàn bộ dữ liệu được quản lý tĩnh trên GitHub.
+                    © 2026 Hệ thống tra cứu Nghề, công việc nặng nhọc, độc hại, nguy hiển. Dữ liệu được quản lý tĩnh
+                    trên GitHub.
                 </div>
                 <div class="flex gap-4">
                     <div class="flex items-center gap-1.5">
@@ -265,7 +276,7 @@
     </div>
 
     <!-- MAIN APP SCRIPT -->
-    <script src="app.js"></script>
+    <script src="app_NNDH.js"></script>
 </body>
 
 </html>

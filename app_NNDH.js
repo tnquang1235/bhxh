@@ -24,7 +24,7 @@ const currentViewLabel = document.getElementById('currentViewLabel');
  */
 async function init() {
     try {
-        updateUIStatus("Đang tải dữ liệu hiệu lực...");
+        updateUIStatus("Đang tải dữ liệu Văn bản đang hiệu lực...");
         const response = await fetch('data/active_NNDH.json');
         activeData = await response.json();
 
@@ -49,7 +49,7 @@ async function loadExpiredData() {
     if (isExpiredLoaded) return;
 
     loadingSpinner.classList.remove('hidden');
-    updateUIStatus("Đang tải dữ liệu cũ...");
+    updateUIStatus("Đang tải dữ liệu Văn bản hết hiệu lực...");
 
     try {
         const response = await fetch('data/expired_NNDH.json');
@@ -59,7 +59,7 @@ async function loadExpiredData() {
         // Cập nhật lại danh sách ngành nghề (bao gồm cả dữ liệu cũ)
         populateIndustries([...activeData, ...expiredData]);
     } catch (error) {
-        console.error("Lỗi tải dữ liệu cũ:", error);
+        console.error("Lỗi tải dữ liệu Văn bản hết hiệu lực:", error);
     } finally {
         loadingSpinner.classList.add('hidden');
     }
